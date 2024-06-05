@@ -1,0 +1,62 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://uatbusiness.nutrifytoday.com/accounts/login/');
+  await page.getByPlaceholder('Email Address').click();
+  await page.getByPlaceholder('Email Address').fill('user@mail.com');
+
+  await page.getByPlaceholder('Password').fill('Test@1234');
+  await page.waitForTimeout(20000);
+
+  await page.getByRole('button', { name: 'Sign In' }).click();
+  await page.getByRole('link', { name: 'Create New Blog' }).click();
+  await page.locator('#id_text_content').click();
+  await page.locator('#id_text_content').fill('hello');
+  await page.getByRole('button', { name: 'Create Blog' }).click();
+  //await page.locator('[id="\\33 d02e969-8a35-4e2f-aa9e-62d6bdc75eae"]').click();
+  await page.getByRole('link', { name: 'Comments' }).first().click();
+  await page.getByPlaceholder('Comment...').click();
+  await page.getByPlaceholder('Comment...').fill('hi');
+  await page.getByRole('button', { name: '' }).click();
+  await page.getByRole('link', { name: 'Back' }).click();
+  await page.getByRole('link', { name: 'Profile' }).click();
+  console.log("Clicked Profile");
+  //await page.getByText("Go To Form").nth(0).click();
+  //await page.locator('.text-muted > a').first().click();
+  //await page.getByText('"/accounts/switch-account/3995e953-cd92-4fa1-959a-4978c4687029/"');
+  await page.getByText('Click to switch the account').nth(0).click();
+  console.log("Switched account");
+
+  //await page.locator('.text-muted > a').first().click();
+  // page.getByText('Nutrify Genie').nth(4).click();
+  //await page.getByRole('link', { name: 'Nutrify Genie', exact: true }).click();
+  await page.getByRole('link', { name: 'Nutrify Genie' }).click();
+  console.log("Clicked on nutrify genie");
+  await page.getByRole('link', { name: 'Create & Validate Your Formula' }).click();
+  await page.getByPlaceholder('Select Department').click();
+  await page.getByRole('option', { name: 'Cardiology' }).click();
+  await page.locator('#select2-select-people-category-container').click();
+  await page.getByRole('option', { name: 'For All' }).click();
+  await page.getByRole('button', { name: 'Proceed' }).click();
+  await page.getByRole('row', { name: 'Allium sativum – bulbs dried' }).getByRole('button').first().click();
+  await page.getByLabel('People Category*').selectOption('1afa1341-fa7f-4fcb-bcd7-ae0e37f0c149');
+  await page.getByLabel('Active Ingredient*').selectOption('00a6910c-6322-42d3-8ad8-4413b0412736');
+  await page.getByLabel('Part*').selectOption('8add32fc-2015-4a9a-92af-5d4d653e7100');
+  await page.getByLabel('Unit*').selectOption('323ccb05-479f-49fa-b47c-7bb65570a06a');
+  await page.getByLabel('Strength*').click();
+  await page.getByLabel('Strength*').press('End');
+  await page.getByLabel('Strength*').press('NumLock');
+  await page.getByLabel('Strength*').fill('5');
+  await page.getByRole('button', { name: 'Add Ingredient' }).click();
+  await page.getByRole('button', { name: 'Generate Report' }).click();
+  await page.getByRole('button', { name: 'Export to PDF' }).click();
+  await page.getByRole('button', { name: 'Back' }).click();
+  await page.getByRole('textbox', { name: 'Select Broad Category' }).click();
+  await page.getByRole('option', { name: 'Test Broad C4 [Test Dpt5]' }).click();
+  await page.getByRole('textbox', { name: 'Select Disease' }).click();
+  await page.getByRole('option', { name: 'Test Disease.4' }).click();
+  await page.getByRole('textbox', { name: 'Select Category' }).click();
+  await page.getByRole('option', { name: 'All' }).click();
+  await page.getByRole('button', { name: 'Show Labels' }).click();
+  await page.getByText('Logout').click();
+});
